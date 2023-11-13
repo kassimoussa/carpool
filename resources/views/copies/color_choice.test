@@ -1,0 +1,172 @@
+<div class="@if ($currentStep != 4) hidden @endif container mx-auto w-full relative mb-4"
+                x-data="{ color: false, vdt: '' }" @click.away="color = false">
+                {{-- <div class="relative ">
+                    <label for="couleur" class="block mb-2 text-sm font-medium  ">
+                        Couleur <span class="text-red-500">*</span>
+                    </label>
+                    <select wire:model="couleur" required
+                        class="h-16 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected >--- Select Couleur ---</option>
+                        <option value="Noir"> <div class="w-5 h-5 rounded-full bg-[#1a7cbd]"></div> Noir</option>
+                        <option value="Break">Break</option>
+                        <option value="Cabriolet">Cabriolet</option>
+                        <option value="Compacte">Compacte</option>
+                        <option value="Monospace">Monospace</option>
+                        <option value="4x4">4x4</option>
+                    </select> 
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        <span class="font-medium">
+                            @error('couleur')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                    </p>
+                </div> --}}
+
+                <input x-model="vdt" x-ref="vdt" @click="color=true" wire:model="couleur"
+                    @keydown.window="
+                        if (event.keyCode === 191) {
+                            event.preventDefault();
+                            $refs.vdt.focus();
+                        }
+                    "
+                    @keydown="color = true" @keydown.escape.window="color = false" @keydown.shift.tab="color = false"
+                    @focus="color = true" id="colors-button"
+                    class="h-16 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                
+
+                <div x-show.transition.opacity="color"
+                    class="  absolute  z-40 mt-4 w-full overflow-y-auto h-64 bg-white rounded divide-y divide-gray-900 shadow dark:bg-gray-700">
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="colors-button">
+                        <li>
+                            <button type="button" wire:click="select_color('Beige')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Beige'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#c5a690] mr-2"></div>
+                                Beige
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Blanc')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Blanc'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full ring ring-1 ring-black bg-white mr-2"></div>
+                                Blanc
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Bleu')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Bleu'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#1a7cbd] mr-2"></div>
+                                Bleu
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Bleu foncé')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Bleu foncé'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#0b2742] mr-2"></div>
+                                Bleu foncé
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Bordeaux')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Bordeaux'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#9b0004] mr-2"></div>
+                                Bordeaux
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Gris')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Gris'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#dddddd] mr-2"></div>
+                                Gris
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Gris foncé')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Gris foncé'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#727272] mr-2"></div>
+                                Gris foncé
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Jaune')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Jaune'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#f4fc01] mr-2"></div>
+                                Jaune
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Marron')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Marron'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#4e301c] mr-2"></div>
+                                Marron
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Noir')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Noir'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-black mr-2"></div>
+                                Noir
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Orange')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Orange'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#fa6600] mr-2"></div>
+                                Orange
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Rose')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Rose'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#ffc3e3] mr-2"></div>
+                                Rose
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Rouge')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Rouge'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#dd0000] mr-2"></div>
+                                Rouge
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Vert')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Vert'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#0db260] mr-2"></div>
+                                Vert
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Vert foncé')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Vert foncé'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#185c3a] mr-2"></div>
+                                Vert foncé
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" wire:click="select_color('Violet')"
+                                class="inline-flex py-2 px-4 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                x-on:click="vdt ='Violet'" @click="color=false">
+                                <div class="w-5 h-5 rounded-full bg-[#570e70] mr-2"></div>
+                                Violet
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>

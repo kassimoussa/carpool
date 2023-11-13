@@ -1,0 +1,31 @@
+@foreach ($types as $typ) 
+                                <div type="button" class="flex justify-between mb-2  hover:bg-gray-100   p-2 @if ($typ->nom == $type2) border border-2 border-blue-500 @endif">
+                                    <div class="flex">
+                                        <label for="{{ $typ->nom }}"
+                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">
+                                            {{ $typ->nom }}
+                                        </label>
+                                    </div>
+                                    <input 
+                                        id="{{ $typ->nom }}" type="radio" value="{{ $typ->nom }}" wire:model="type2"  
+                                        class="w-5 h-5 text-blue-600 bg-gray-100  focus:ring-blue-500  focus:ring-2">
+                                </div>
+                                @endforeach 
+
+                                @foreach ($colors as $color)
+                                <div type="button"
+                                    class="flex justify-between mb-2  hover:bg-gray-100   p-2 @if ($color->nom == $couleur2) border border-2 border-blue-500 @endif">
+                                    <div class="flex">
+                                        <div
+                                            class="w-5 h-5 rounded-full @if ($color->nom == 'Blanc') ring ring-1 ring-black @endif bg-[#{{ $color->hexcode }}] mr-2">
+                                        </div>
+                                        <label for="{{ $color->nom }}"
+                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">
+                                            {{ $color->nom }}
+                                        </label>
+                                    </div>
+                                    <input id="{{ $color->nom }}" type="radio" value="{{ $color->nom }}"
+                                        wire:model="couleur2" @if ($color->nom == $couleur2) autofocus @endif
+                                        class="w-5 h-5 text-blue-600 bg-gray-100  focus:ring-blue-500  focus:ring-2">
+                                </div>
+                            @endforeach

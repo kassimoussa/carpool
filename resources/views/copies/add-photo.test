@@ -1,0 +1,33 @@
+<div>
+    <div class="flex flex-col   md:flex-row items-center md:justify-between mb-8">
+
+        <div class="text-center">
+            <img src="{{ asset($url) }} " alt="profile image" class="w-36 h-36 rounded-full ">
+
+        </div>
+
+        <div class="w-2/3 text-center">
+            <p class="text-md md:text-xl font-semibold text-blue-600 mt-4">
+                Veuillez choisir une photo de vous regardant droit devant, sans lunettes de soleil et coiffes
+            </p>
+            <button class="py-2.5 px-4   mt-6 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 font-semibold"
+                type="button" onclick="$('#photo').trigger('click'); return false;">
+                Choisir une photo
+            </button>
+            <input type="file" class="form-control" wire:model="photo" id="photo" style="display: none;"
+                onchange="readURL(this);">
+        </div>
+    </div>
+
+    @if ($saveButton)
+        <div class="text-center  ">
+            <button wire:click="save"
+                class="py-2.5 px-4 mt-8 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 font-semibold"
+                type="button">
+                Enregistrer
+            </button>
+        </div>
+    @endif
+
+
+</div>
